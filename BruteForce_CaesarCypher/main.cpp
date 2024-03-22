@@ -11,5 +11,6 @@ using namespace std;
 
 int main()
 {
+	UI();
 	return 0;
 }

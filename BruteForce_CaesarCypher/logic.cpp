@@ -103,9 +103,34 @@ int bruteForceCaesarCypher(const std::vector<float>& distribution, std::string e
 void UI()
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, 36);
-	while (true)
-	{
-		std::cout << "";
-	}
+	SetConsoleTextAttribute(hConsole, 3);
+		std::cout << "Write your encrypted text in the to_decrypt.txt file with no enters\n";
+		//create the distribution
+		std::vector<float> distribution;
+		readDistribution(distribution, "distribution.txt");
+		//read the encrypted text
+		std::ifstream file("to_decrypt.txt");
+		if (!file.is_open())
+		{
+			std::cerr << "Could not open file to_decrypt.txt" << std::endl;
+			exit(1);
+		}
+		std::string encryptedText;
+		std::getline(file, encryptedText);
+		file.close();
+		//decrypt the text
+		std::string decryptedText;
+		int key;
+		bruteForceCaesarCypher(distribution, encryptedText, decryptedText, key);
+		//write the decrypted text
+		std::ofstream file2("decrypted.txt");
+		if (!file2.is_open())
+		{
+			std::cerr << "Could not open file decrypted.txt" << std::endl;
+			exit(1);
+		}
+		file2 << decryptedText;
+		file2.close();
+		std::cout << "The key is: " << key << std::endl;
+		std::cout << "Check the decrypted.txt file for the decrypted text\n";
 }
