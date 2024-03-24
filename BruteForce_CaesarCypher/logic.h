@@ -31,11 +31,7 @@ int bruteForceCaesarCypher(const std::vector<float>& distribution, std::string e
 
 /*
 A minimal UI that offers the users a few choices like:
--display the text to be decrypted from the file
--"press enter to start the decryption"
-- display the decrypted text
 - display the key
-- crash the whole computer (hey mom I learned regex)
 - exit
 */
 void UI();
